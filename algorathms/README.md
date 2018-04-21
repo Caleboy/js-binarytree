@@ -16,53 +16,45 @@
 ### 构造二叉查找树
 
 ```js
-function BinaryTree() {
-            //二叉查找树由节点组成，所以我们先定义Node
-
-            //Node
-            var Node = function(data,left,right) {
-                this.data = data;
-                this.left = left;
-                this.right = right;
-               // this.show = show;
-            };
-
-            // var show = function() {
-            //         return = this.data;
-            // };
-
-            var root = null;//设置根节点
-
-            //insert()方法，用来向树中加入新节点
-            this.insert = function(data) {
-                var newNode = new Node(data,null,null);
-                if(root ===null){
-                    root = newNode;
+/*
+* parameter: data:本节点的数据；left：做节点；right：右节点
+* 创建节点示例并插入到二叉树的正确位置
+*/
+function Node(data,left,right){
+    this.data = data;
+    this.left = left;
+    this.right = right;
+}
+function BST(){
+    this.root = null;
+    this.insert = insert;
+}
+BST.prototype.insert = function(data) {
+    var node = new Node(data,null,null);
+    if(this.root == null){
+        this.root = node;
+    }else{
+        var current = this.root;
+        while(true){
+            if(current.data > data){
+                if(current.left === null){
+                    current.left = node;
+                    break;
                 }
-                else {
-                    insertNode(root,newNode);
+                current = current.left;
+            }else{
+                if(current.right === null){
+                    current.right = node;
+                    break;
                 }
-            };
-
-            var insertNode = function(node,newNode) {
-                     if(newNode.data < node.data){
-                        if(node.left === null){
-                          node.left = newNode;
-                        }else{
-                          insertNode(node.left,newNode);
-                        }
-                     }else{
-                       if(node.right === null){
-                         node.right = newNode;
-                       }else{
-                         insertNode(node.right,newNode);
-                       }
-                     }
-            };
+                current = current.right;
+            }
+        }
+    }
 }
 
 var nodes = [8,3,10,1,6,14,4,7,13];
-var binaryTree = new BinaryTree();
+var binaryTree = new BST();
 nodes.forEach(function(data) {
     binaryTree.insert(data);
 });
@@ -90,61 +82,61 @@ var inOrderTraverseNode = function(node,callback) {
 
 ```js
 function BinaryTree() {
-            //二叉查找树由节点组成，所以我们先定义Node
+    //二叉查找树由节点组成，所以我们先定义Node
 
-            //Node
-            var Node = function(data,left,right) {
-                this.data = data;
-                this.left = left;
-                this.right = right;
-               // this.show = show;
-            };
+    //Node
+    var Node = function(data,left,right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+       // this.show = show;
+    };
 
-            // var show = function() {
-            //         return = this.data;
-            // };
+    // var show = function() {
+    //         return = this.data;
+    // };
 
-            var root = null;//设置根节点
+    var root = null;//设置根节点
 
-            //insert()方法，用来向树中加入新节点
-            this.insert = function(data) {
-                var newNode = new Node(data,null,null);
-                if(root ===null){
-                    root = newNode;
+    //insert()方法，用来向树中加入新节点
+    this.insert = function(data) {
+        var newNode = new Node(data,null,null);
+        if(root ===null){
+            root = newNode;
+        }
+        else {
+            insertNode(root,newNode);
+        }
+    };
+
+    this.inOrderTraverse = function(callback) {
+        inOrderTraverseNode(root,callback);
+    }
+
+    var insertNode = function(node,newNode) {
+             if(newNode.data < node.data){
+                if(node.left === null){
+                  node.left = newNode;
+                }else{
+                  insertNode(node.left,newNode);
                 }
-                else {
-                    insertNode(root,newNode);
-                }
-            };
+             }else{
+               if(node.right === null){
+                 node.right = newNode;
+               }else{
+                 insertNode(node.right,newNode);
+               }
+             }
 
-            this.inOrderTraverse = function(callback) {
-                inOrderTraverseNode(root,callback);
-            }
+    };
 
-            var insertNode = function(node,newNode) {
-                     if(newNode.data < node.data){
-                        if(node.left === null){
-                          node.left = newNode;
-                        }else{
-                          insertNode(node.left,newNode);
-                        }
-                     }else{
-                       if(node.right === null){
-                         node.right = newNode;
-                       }else{
-                         insertNode(node.right,newNode);
-                       }
-                     }
-
-            };
-
-            var inOrderTraverseNode = function(node,callback) {
-                if (node!==null) {
-                    inOrderTraverseNode(node.left,callback);
-                    callback(node.data);
-                    inOrderTraverseNode(node.right,callback);
-                }
-            }
+    var inOrderTraverseNode = function(node,callback) {
+        if (node!==null) {
+            inOrderTraverseNode(node.left,callback);
+            callback(node.data);
+            inOrderTraverseNode(node.right,callback);
+        }
+    }
 
 }
 
