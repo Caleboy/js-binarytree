@@ -161,7 +161,7 @@ binaryTree.inOrderTraverse(callback);
 通过其前序遍历去复制一颗二叉树比重新构造一颗二叉树要高效得多
 
 ```js
-var inOrderTraverseNode = function(node,callback) {
+var preOrderTraverseNode = function(node,callback) {
     if (node!==null) {
         callback(node.data);
         inOrderTraverseNode(node.left,callback);
@@ -177,7 +177,7 @@ var inOrderTraverseNode = function(node,callback) {
 ### 后序遍历
 
 ```js
-var inOrderTraverseNode = function(node,callback) {
+var postOrderTraverseNode = function(node,callback) {
     if (node!==null) {
         callback(node.data);
         inOrderTraverseNode(node.left,callback);
