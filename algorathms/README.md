@@ -160,6 +160,28 @@ binaryTree.inOrderTraverse(callback);
 而前序遍历可以在我们已经拥有一颗二叉树的时候，高效的复制这颗二叉树。
 通过其前序遍历去复制一颗二叉树比重新构造一颗二叉树要高效得多
 
-前（先）序遍历：按照最优先顺序沿一定路径经过路径上所有的站。在二叉树中，先根后左再右。巧记：根左右。
+```js
+var inOrderTraverseNode = function(node,callback) {
+    if (node!==null) {
+        callback(node.data);
+        inOrderTraverseNode(node.left,callback);
+        inOrderTraverseNode(node.right,callback);
+    }
+}
+```
+
+```html
+<p>前（先）序遍历：按照最优先顺序沿一定路径经过路径上所有的站。在二叉树中，先根后左再右。巧记：根左右。
+```
 
 ### 后序遍历
+
+```js
+var inOrderTraverseNode = function(node,callback) {
+    if (node!==null) {
+        callback(node.data);
+        inOrderTraverseNode(node.left,callback);
+        inOrderTraverseNode(node.right,callback);
+    }
+}
+```
